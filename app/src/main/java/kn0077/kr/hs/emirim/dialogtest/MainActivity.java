@@ -36,13 +36,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });*/
 
        //라디오 버튼 목록
-        dialog.setSingleChoiceItems(itemArr,0, new DialogInterface.OnClickListener() {
+        /*dialog.setSingleChoiceItems(itemArr,0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) { // which 는 클릭한 항목의 인덱스값
                 butDialog.setText(itemArr[which]);
             }
+        });*/
+
+        //체크박스 목록
+        //선택여부 배열
+        boolean[] checkedItems={true,false,true,false};
+        dialog.setMultiChoiceItems(itemArr, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                if(isChecked) {
+                    butDialog.setText(itemArr[which]);
+                }
+            }
         });
-        dialog.setPositiveButton("OK",null);
+
+        dialog.setPositiveButton("OK",null); // 없애도 됨
         dialog.show();//다이얼로그를 화면에 보이게 설정
     }
 }
